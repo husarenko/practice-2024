@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Моя Ознайомча практика 2024</title>
+    <link rel="stylesheet" href="./css/styles.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <main>
+        <div class="header">
+            <h2>Моя Ознайомча практика 2024</h2>
+        </div>
+        <div class="navbar">
+            <a href="./index.html">Головна</a>
+            <a href="./task1.html">Завдання 1</a>
+            <a href="./task2.html">Завдання 2</a>
+            <a href="./about.html">Про сайт</a>
+        </div>
+        <div class="desc">
+            <h2>Завдання 1 - ОБЧИСЛЕННЯ У SCILAB</h2>
+            <!-- 1.1 -->
+            <h3>Завдання 1.1.</h3>
+            <p><em>Побудувати за допомогою Scilab графік функції згідно з варіантом на довільному відрізку.
+                    Знайти значення функції у довільних точках, протабулювати (отримати таблицю значень) цієї функції на
+                    відрізку [0;π], змінення значення змінної виконувати з довільним кроком.<br><br>
+                    Виконати перевірку отриманого результату шляхом побудови того самого графіка у MS Excel. Результати
+                    порівняти.
+                </em></p><br>
+            <p style="text-align: center;">ВАРІАНТ 9</p>
+            <p style="text-align: center;">Функція:\[y = 2 + cos(x)\]</p>
+            <p>Код Scilab:</p>
+            <div class="code">
+                <div class="codeDef"><a><b>1.1.sce</b></a></div>
+                <div class="codeArea">
+                    <code>x = linspace(0, 3.14, 100);<br><br>
+
+                y = 2 + cos(x);<br><br>
+                
+                plot(x, y);<br>
+                xlabel('x');<br>
+                ylabel('y');<br>
+                title('Графік y = 2 + cos(x)');<br><br>
+                
+                disp([x', y']);
+                </code>
+                </div>
+            </div><br>
+            <p>Результат виконання програми у Scilab (рисунок 1 - 2):</p>
+            <div class="desc_media">
+                <img src="./media/task_1/1.1/1.png" class="zoomable">
+                <a>Рисунок 1. Графік функції y = 2 + cos(x)</a>
+                <img src="./media/task_1/1.1/2.png" class="zoomable">
+                <a>Рисунок 2. Табулювання функції на відрізку [0;π]<a href='./media/task_1/1.1/table.txt'
+                        target="_blank" style="color: rgb(49, 49, 149)">Повне табулювання
+                        тут</a></a>
+            </div>
+            <p>Таблиця Excel (рисунок 3):</p>
+            <div class="desc_media">
+                <img src="./media/task_1/1.1/3.png" class="zoomable">
+                <a>Рисунок 3. Таблиця Excel</a>
+            </div>
+            <h3>Висновок</h3>
+            <p>Порівнюючи отримані результаті у Scilab та Excel, графіки виходять ідентичними попри розбіжності у
+                табулюваннях між двома програмами. </p>
+            <br>
+            <hr>
+            <!-- 1.2 -->
+            <h3>Завдання 1.2.</h3>
+            <p><em>Знайти за допомогою Scilab корінь рівняння чисельно і, якщо це можливо,
+                    аналітично.<br><br>Виконати перевірку отриманого результату у MS Excel. Результати порівняти.
+                </em></p><br>
+            <p style="text-align: center;">ВАРІАНТ 9</p>
+            <p style="text-align: center;">Рівняння: \[2 - x = ln(x)\]</p>
+            <p>Рівняння не має простого аналітичного розв'язку через комбінацію поліноміальних і логарифмічних функцій.
+                Для знаходження його коренів застосовуються чисельні методи.</p><br>
+            <p>Код Scilab:</p>
+            <div class="code">
+                <div class="codeDef"><a><b>1.2.sce</b></a></div>
+                <div class="codeArea">
+                    <code>//Визначаємо функцію<br>
+                        function y = myFunction(x)<br>
+                            y = 2 - x - log(x);<br>
+                        endfunction<br><br>
+                        
+                        x0 = 1;<br><br>
+                        
+                        //Розв'язок функції через x0<br>
+                        x_solution = fsolve(x0, myFunction);<br><br>
+                        
+                        //Виводимо результат<br>
+                        disp("Відповідь: ");<br>
+                        disp(x_solution);
+                </code>
+                </div>
+            </div><br>
+            <p>Результат виконання програми у Scilab (рисунок 1):</p>
+            <div class="desc_media">
+                <img src="./media/task_1/1.2/1.png" class="zoomable">
+                <a>Рисунок 1. Вивід відповіді у середовище Scilab</a>
+            </div>
+            <p>Результат виконання аналогічної роботи в Excel через підбір параметра (рисунок 2 - 4): </p>
+            <div class="desc_media">
+                <img src="./media/task_1/1.2/2.png" class="zoomable">
+                <a>Рисунок 2. Початковий вигляд таблиці до застосування підбору параметра</a>
+                <img src="./media/task_1/1.2/3.png" class="zoomable">
+                <a>Рисунок 3. Результат застосування підбору параметра</a>
+            </div>
+            <h3>Висновок</h3>
+            <p>Порівнюючи отримані результаті у Scilab та Excel, відповідь майже ідентична в обох випадках. Похибка
+                становить:</p>
+            <p>
+                \[
+                1.5571456 - 1.5565565 \approx 0.00059
+                \]
+            </p>
+            <br>
+            <br>
+            <hr>
+            <!-- 1.3 -->
+            <h3>Завдання 1.3.</h3>
+            <p><em>Знайти за допомогою Scilab чисельне рішення системи. Виконати перевірку отриманого результату у MS
+                    Excel.<br><br> Результати порівняти.
+                </em></p>
+            <p style="text-align: center;">ВАРІАНТ 9</p>
+            <p style="text-align: center;">Система рівнянь:</p>
+            <p>
+                \[
+                \begin{cases}
+                x = x^2 + y^2 - 0.1 \\
+                y = 2xy - 0.1
+                \end{cases}
+                \]
+            </p>
+            <p>Код Scilab:</p>
+            <div class="code">
+                <div class="codeDef"><a><b>1.3.sce</b></a></div>
+                <div class="codeArea">
+                    <code>
+                        // Система рівнянь<br>
+                        function [x_next, y_next] = simple_iteration(x, y)<br>
+                            x_next = x^2 + y^2 - 0.1;<br>
+                            y_next = 2*x*y - 0.1;<br>
+                        endfunction<br><br>
+                        
+                        // Розв'язання за допомогою методу ітерації<br>
+                        function [x_sol, y_sol] = simple_iterative_method(x0, y0, max_iter, tol)<br><br>
+                            
+                            //Початкова точка (0;0)<br>
+                            x = x0;<br>
+                            y = y0;<br><br>
+                            
+                            //Цикл ітерацій<br>
+                            for iter = 1:max_iter<br>
+                                [x_next, y_next] = simple_iteration(x, y); //визначення x та y<br>
+                                if norm([x_next - x; y_next - y]) < tol //якщо норма вектора змін менша за точність<br>
+                                    break;<br>
+                                end<br>
+                                x = x_next;<br>
+                                y = y_next;<br>
+                            end<br><br>
+                        
+                            x_sol = x;<br>
+                            y_sol = y;<br>
+                        endfunction<br><br>
+                        
+                        max_iterations = 100; //Кількість ітерації (за замовчуванням)<br>
+                        tolerance = 1e-6; //Точність<br><br>
+                        
+                        //Розв'язок системи рівнянь<br>
+                        [x_solution, y_solution] = simple_iterative_method(0, 0, max_iterations, tolerance);<br><br>
+                        
+                        disp(['Відповідь:']);<br>
+                        disp(['x = ', string(x_solution)]);<br>
+                        disp(['y = ', string(y_solution)]);
+                </code>
+                </div>
+            </div><br>
+            <p>Результат виконання програми у Scilab (рисунок 1):</p>
+            <div class="desc_media">
+                <img src="./media/task_1/1.3/1.png" class="zoomable">
+                <a>Рисунок 1. Вивід відповіді у середовище Scilab</a>
+            </div>
+            <p>Результат роботи програми та порівняння результатів в Excel (рисунок 2):</p>
+            <div class="desc_media">
+                <img src="./media/task_1/1.3/2.png" class="zoomable">
+                <a>Рисунок 1. Вивід відповіді у середовище Scilab</a>
+            </div>
+            <h3>Висновок</h3>
+            <p>Порівнюючи отримані результаті у Scilab та Excel, відповідь майже ідентична в обох випадках. Похибка
+                становить (для x та у):</p>
+            <p>
+                \[
+                -0.1 - (-0.0854105) = 0.0145895
+                \]
+            </p>
+        </div>
+        <div class="logos">
+            <a><img src="./media/6fac.png"></a>
+            <a><img src="./media/khai.png"></a>
+        </div>
+
+    </main>
+
+    <div id="modal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="modalImg">
+    </div>
+    <script src="./js/scripts.js"></script>
+</body>
+
+</html>
