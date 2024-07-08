@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Моя Ознайомча практика 2024</title>
     <link rel="stylesheet" href="./css/styles.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 
 <body>
@@ -20,7 +22,258 @@
             <a href="./about.html">Про сайт</a>
         </div>
         <div class="desc">
-            <p><i class="fas fa-trash-alt"></i> please be patient</p>
+            <h2>Завдання 2 - ЧИСЕЛЬНІ МЕТОДИ</h2>
+            <p><em>Ознайомитися з одним із чисельних методів та виконати його реалізацію мовою програмування високого
+                    рівня (за винятком Basic, Pascal, Fortran), засобами програмування Scilab та перевірити правильність
+                    отриманих програмних рішень за допомогою інших засобів Scilab.</em></p>
+            <p style="text-align: center;">ВАРІАНТ 9</p>
+            <p style="text-align: center;">Чисельний метод: Метод дотичних / Ньютона</p>
+            <p style="text-align: center;">Нелінійне рівняння:\[x^3 - 3 * x^2 - 24 * x - 5 = 0\]</p>
+            <p>У якості мови програмування високого рівня була обрана мова C#.</p>
+            <p>Код C#:</p>
+            <div class="code">
+                <div class="codeDef"><a><b>calc.cs</b></a></div>
+                <div class="codeArea">
+                    <code>public class Calc<br>
+                        {<br>
+                            public static void Answer(double x0)<br>
+                            {<br>
+                                Console.WriteLine("> Функція: f(x) = x^3 - 3x^2 - 24x - 5");<br>
+                                Console.WriteLine();<br><br>
+                                
+                                // f(x) = x^3 - 3x^2 - 24x - 5<br>
+                                Func<double, double> f = x => Math.Pow(x, 3) - 3 * Math.Pow(x, 2) - 24 * x - 5;<br>
+                        
+                        
+                                const double epsilon = 1e-6; //точність<br>
+                                const double h = 1e-6; //крок чисельного диференціювання<br>
+                                        
+                                Console.WriteLine($"x0: {x0}");<br>
+                                Console.WriteLine();<br>
+                                Console.WriteLine($"ε: {epsilon}");<br>
+                                Console.WriteLine($"Крок чисельного диференціювання (h): {h}");<br>
+                                Console.WriteLine();<br><br>
+                                
+                                var x1 = x0;<br><br>
+                                
+                                double fx; //f(x)<br>
+                                double fxPrime; //f'(x)<br>
+                                int iteration = 0; //кількість ітерацій<br><br>
+                                
+                                while (true)<br>
+                                {<br>
+                                    fx = f(x0);<br><br>
+                                    
+                                    //Знаходження значення похідної функції f(x) у точці x0<br>
+                                    fxPrime = (f(x0 + h) - f(x0 - h)) / (2 * h);<br><br>
+                                    
+                                    if (Math.Abs(fxPrime) < epsilon)<br>
+                                    {<br>
+                                        Console.WriteLine("Похідна менша за ε.");<br>
+                                        break;<br>
+                                    }<br><br>
+                        
+                                    x1 = x0 - fx / fxPrime;<br><br>
+                        
+                                    if (Math.Abs(x1 - x0) < epsilon)<br>
+                                    {<br>
+                                        break;<br>
+                                    }<br><br>
+                                    
+                                    iteration++;<br>
+                                    Console.WriteLine($"> Ітерація {iteration}: Значення функції f(x) в точці {x0:F7} становить {fx:F7}, похідна {fxPrime:F7}");<br><br>
+                        
+                                    x0 = x1; //щоб не збивались ітерації<br>
+                                    
+                                }<br>
+                                Console.WriteLine();<br>
+                                Console.WriteLine($"Корінь рівняння: {x1:F7}");<br>
+                                Console.WriteLine();<br>
+                            }<br>
+                        }<br>
+                </code>
+                </div>
+            </div><br>
+            <div class="code">
+                <div class="codeDef"><a><b>program.cs</b></a></div>
+                <div class="codeArea">
+                    <code>class Program<br>
+                        {<br>
+                            static void Main()<br>
+                            {<br>
+                                Console.OutputEncoding = Encoding.UTF8;<br><br>
+                                
+                                string userInput;<br><br>
+                                
+                                do<br>
+                                {<br>
+                                    Console.Clear();<br>
+                                    Console.WriteLine("Введіть x0:");<br>
+                                    var x0 = double.Parse(Console.ReadLine());<br>
+                                    Console.Clear();<br><br>
+                                    
+                                    Calc.Answer(x0);<br><br>
+                        
+                                    Console.WriteLine("Бажаєте продовжити? (y/N)");<br>
+                                    userInput = Console.ReadLine().Trim().ToLower();<br>
+                                }<br>
+                                while (userInput == "y");<br><br>
+                        
+                                Console.ReadKey();<br>
+                            }<br>
+                        }
+                </code>
+                </div>
+            </div><br>
+            <p>Код Scilab з усіма перевірками:</p>
+            <div class="code">
+                <div class="codeDef"><a><b>2.2.sce</b></a></div>
+                <div class="codeArea">
+                    <code>// Функція за варіантом<br>
+                        function y = f(x)<br>
+                            y = x^3 - 3*x^2 - 24*x - 5;<br>
+                        endfunction<br><br>
+                        
+                        // Похідна від функції<br>
+                        function y = df(x)<br>
+                            y = 3*x^2 - 6*x - 24;<br>
+                        endfunction<br><br>
+                        
+                        // Ініціалізація метода Ньютона<br>
+                        function x_root = newton_method(f, df, x0, epsilon)<br>
+                            x = x0;<br>
+                            while abs(f(x)) > epsilon do<br>
+                                x = x - f(x) / df(x);<br>
+                            end<br>
+                            x_root = x;<br>
+                        endfunction<br><br>
+                        
+                        // Метод бісекції<br>
+                        function x_root = bisection_method(f, a, b, epsilon)<br>
+                            while abs(b - a) > epsilon do<br>
+                                c = (a + b) / 2;<br>
+                                if f(c) == 0 then<br>
+                                    x_root = c;<br>
+                                    return;<br>
+                                elseif f(a) * f(c) < 0 then<br>
+                                    b = c;<br>
+                                else<br>
+                                    a = c;<br>
+                                end<br>
+                            end<br>
+                            x_root = (a + b) / 2;<br>
+                        endfunction<br><br>
+                        
+                        x0 = input("Введіть початкове значення x0: ");<br><br>
+                        
+                        epsilon = 1e-6;<br><br>
+                        
+                        x_root_newton = newton_method(f, df, x0, epsilon);<br><br>
+                        
+                        disp("Знайдений корінь методом Ньютона:");<br>
+                        disp(x_root_newton);<br>
+                        disp("");<br><br>
+                        
+                        // Перевірка за допомогою методу бісекції<br>
+                        a = x0 - 10;  // нижня межа<br>
+                        b = x0 + 10;  // верхня межа<br>
+                        x_root_bisection = bisection_method(f, a, b, epsilon);<br><br>
+                        
+                        disp("Знайдений корінь методом бісекції:");<br>
+                        disp(x_root_bisection);<br>
+                        disp("");<br><br>
+                        
+                        // Перевірка за допомогою іншого початкового значення<br>
+                        x0_check = x0 + 1;<br>
+                        x_root_newton_check = newton_method(f, df, x0_check, epsilon);<br><br>
+                        
+                        disp("Знайдений корінь методом Ньютона з іншим початковим значенням:");<br>
+                        disp(x_root_newton_check);<br>
+                        disp("");<br><br>
+                        
+                        // Пперевірка за допомогою методу бісекції з іншим інтервалом<br>
+                        a_check = x0_check - 10;  // нижня межа<br>
+                        b_check = x0_check + 10;  // верхня межа<br>
+                        x_root_bisection_check = bisection_method(f, a_check, b_check, epsilon);<br><br>
+                        
+                        disp("Знайдений корінь методом бісекції з іншим інтервалом:");<br>
+                        disp(x_root_bisection_check);
+                </code>
+                </div>
+            </div><br>
+            <h3>Перевірка роботи</h3>
+            <p>Візьмемо деякі значення x0 для тестування (таблиця 1):</p>
+            <div class="table">
+                <table>
+                    <caption style="text-align: right;">Таблиця 1</caption>
+                    <tr>
+                        <th>№</th>
+                        <th>x0</th>
+                        <th colspan="2">Очікуваний результат</th>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th>Scilab</th>
+                        <th>C#</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>5</td>
+                        <td>6.6958380</td>
+                        <td>6,6958380</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>3</td>
+                        <td>-3.4813424</td>
+                        <td>-3,4813424</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>-999</td>
+                        <td>-3.4813424</td>
+                        <td>-3,4813424</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>4</td>
+                        <td>Inf</td>
+                        <td>4 (inf)</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>0</td>
+                        <td>-0.2144956</td>
+                        <td>-0,2144956</td>
+                    </tr>
+                </table>
+            </div>
+            <p>Скріншоти роботи (рисунок 1 - 10):</p>
+            <div class="desc_media">
+                <img src="./media/task_2/1_sci.png" class="zoomable">
+                <a>Рисунок 1. Тест 1 Scilab</a>
+                <img src="./media/task_2/1_cs.png" class="zoomable">
+                <a>Рисунок 2. Тест 1 C#</a>
+                <img src="./media/task_2/2_sci.png" class="zoomable">
+                <a>Рисунок 3. Тест 2 Scilab</a>
+                <img src="./media/task_2/2_cs.png" class="zoomable">
+                <a>Рисунок 4. Тест 2 C#</a>
+                <img src="./media/task_2/3_sci.png" class="zoomable">
+                <a>Рисунок 5. Тест 3 Scilab</a>
+                <img src="./media/task_2/3_cs.png" class="zoomable">
+                <a>Рисунок 6. Тест 3 C#</a>
+                <img src="./media/task_2/4_sci.png" class="zoomable">
+                <a>Рисунок 7. Тест 4 Scilab</a>
+                <img src="./media/task_2/4_cs.png" class="zoomable">
+                <a>Рисунок 8. Тест 4 C#</a>
+                <img src="./media/task_2/5_sci.png" class="zoomable">
+                <a>Рисунок 9. Тест 5 Scilab</a>
+                <img src="./media/task_2/5_cs.png" class="zoomable">
+                <a>Рисунок 10. Тест 5 C#</a>
+            </div>
+            <h3>Висновок</h3>
+            <p>Порівнюючи отримані результаті у Scilab та C#, відповіді ідентичні в усіх тестах. Можливі похибки можуть виникнути при 9-10 знаках після коми.</p>
         </div>
         <div class="logos">
             <a><img src="./media/6fac.png"></a>
@@ -28,6 +281,11 @@
         </div>
 
     </main>
+    <div id="modal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="modalImg">
+    </div>
+    <script src="./js/scripts.js"></script>
 </body>
 
 </html>
