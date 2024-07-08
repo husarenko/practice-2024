@@ -25,7 +25,14 @@
                     <a href="./task1_3.html">Завдання 1.3</a>
                 </div>
             </div>
-            <a href="./task2.html">Завдання 2</a>
+            <div class="dropdown">
+                <a style="cursor: default;">Завдання 2</a>
+                <div class="dropdown-content">
+                    <a href="./task2_1.html">Теорія</a>
+                    <a href="./task2_2.html">Програмна реалізація</a>
+                    <a href="./task2_3.html">Тестування</a>
+                </div>
+            </div>
             <a href="./about.html">Про сайт</a>
         </div>
         <div class="desc">
@@ -36,22 +43,6 @@
             <p style="text-align: center;">ВАРІАНТ 9</p>
             <p style="text-align: center;">Чисельний метод: Метод дотичних / Ньютона</p>
             <p style="text-align: center;">Нелінійне рівняння:\[x^3 - 3 * x^2 - 24 * x - 5 = 0\]</p>
-
-            <h3>Метод Ньютона</h3>
-            <p>Метод Ньютона, також відомий як метод Ньютона-Рафсона, є числовим методом для знаходження наближених
-                коренів дійсних функцій. Основна ідея методу полягає у використанні послідовності дотичних для
-                знаходження все більш точних наближень до кореня функції.</p>
-            <div class="desc_media">
-                <img src="./media/task_2/diagram.png" class="zoomable">
-                <a>Рисунок 1. Блок-схема метода Ньютона</a>
-            </div>
-            <h3>Принцип роботи:</h3>
-            <p>Почнемо з початкового значення x0​, яке є початковим наближенням до кореня функції f(x).</p>
-            <p>Встановимо точність ϵ (епсілон), при досягненні якої обчислення завершаться.</p>
-            <p>Обчислимо значення функції f(x0​) та її похідної f'(x0​) у точці x0​.</p>
-            <p>Якщо похідна f'(x0)≠0, продовжуємо обчислення. Інакше метод не може бути застосований.</p>
-            <p>Знаходимо нове наближення x1​ за формулою: \[x1=x0-(f(x0)/f'(x0))\]</p>
-            <p>Якщо різниця між новим та старим наближенням |x1​-x0​| < ϵ, процес завершується і корінь знайдено. Інакше приймаємо x1x1​ як нове наближення і повторюємо обчислення.</p>
             <br>
             <p>У якості мови програмування високого рівня була обрана мова C#.</p>
             <p>Код C#:</p>
@@ -224,81 +215,7 @@
                         disp(x_root_bisection_check);
                 </code>
                 </div>
-            </div><br>
-            <h3>Перевірка роботи</h3>
-            <p>Візьмемо деякі значення x0 для тестування (таблиця 1):</p>
-            <div class="table">
-                <table>
-                    <caption style="text-align: right;">Таблиця 1</caption>
-                    <tr>
-                        <th>№</th>
-                        <th>x0</th>
-                        <th colspan="2">Очікуваний результат</th>
-                    </tr>
-                    <tr>
-                        <th></th>
-                        <th></th>
-                        <th>Scilab</th>
-                        <th>C#</th>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>5</td>
-                        <td>6.6958380</td>
-                        <td>6,6958380</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>3</td>
-                        <td>-3.4813424</td>
-                        <td>-3,4813424</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>-999</td>
-                        <td>-3.4813424</td>
-                        <td>-3,4813424</td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>4</td>
-                        <td>Inf</td>
-                        <td>4 (inf)</td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>0</td>
-                        <td>-0.2144956</td>
-                        <td>-0,2144956</td>
-                    </tr>
-                </table>
             </div>
-            <p>Скріншоти роботи (рисунок 1 - 10):</p>
-            <div class="desc_media">
-                <img src="./media/task_2/1_sci.png" class="zoomable">
-                <a>Рисунок 1. Тест 1 Scilab</a>
-                <img src="./media/task_2/1_cs.png" class="zoomable">
-                <a>Рисунок 2. Тест 1 C#</a>
-                <img src="./media/task_2/2_sci.png" class="zoomable">
-                <a>Рисунок 3. Тест 2 Scilab</a>
-                <img src="./media/task_2/2_cs.png" class="zoomable">
-                <a>Рисунок 4. Тест 2 C#</a>
-                <img src="./media/task_2/3_sci.png" class="zoomable">
-                <a>Рисунок 5. Тест 3 Scilab</a>
-                <img src="./media/task_2/3_cs.png" class="zoomable">
-                <a>Рисунок 6. Тест 3 C#</a>
-                <img src="./media/task_2/4_sci.png" class="zoomable">
-                <a>Рисунок 7. Тест 4 Scilab</a>
-                <img src="./media/task_2/4_cs.png" class="zoomable">
-                <a>Рисунок 8. Тест 4 C#</a>
-                <img src="./media/task_2/5_sci.png" class="zoomable">
-                <a>Рисунок 9. Тест 5 Scilab</a>
-                <img src="./media/task_2/5_cs.png" class="zoomable">
-                <a>Рисунок 10. Тест 5 C#</a>
-            </div>
-            <h3>Висновок</h3>
-            <p>Порівнюючи отримані результаті у Scilab та C#, відповіді ідентичні в усіх тестах. Можливі похибки можуть
-                виникнути при 9-10 знаках після коми.</p>
         </div>
         <div class="logos">
             <a><img src="./media/6fac.png"></a>
